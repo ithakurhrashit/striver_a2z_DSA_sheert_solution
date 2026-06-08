@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std ;
+int main(){
+    int n ;
+    cout << "enter the size of array";
+    cin >> n ;
+    cout << "enter the array ";
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin >> a[i];
+    }
+    // now pre compute 
+    int hash[13]={0};
+    for(int i=0;i<n;i++){
+        hash[a[i]]++;
+}
+// now calculating the query 
+int q ;
+cout << "enyter the number whose frequency you wnat" ;
+cin >>  q;
+cout << "the freq of" << q << " is " << hash[q];
+}
