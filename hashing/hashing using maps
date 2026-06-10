@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std ;
+int main(){
+    int n ;
+    cout << "enter the number of elements";
+    cin >> n ;
+    int arr[n];
+    cout << "enter the array ";
+    for(int i=0;i<n ;i++){
+        cin >> arr[i];
+    }
+    // now precomputing by the help of map;
+    map <int , int > mpp ;
+    for(int i=0;i<n ;i++){
+        mpp[arr[i]]++;
+    }
+    // take the queries 
+    cout << " enter the number whose frequemcy you want";
+    int q ;
+    cin >> q ;
+    cout << " the  frequency of " << q  << "in array is" << mpp[q];
+}
