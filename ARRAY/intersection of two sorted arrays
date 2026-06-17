@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> nums1 = {1, 2, 3, 4, 5};
+    vector<int> nums2 = {1, 2, 4, 6};
+    vector<int> intersection;
+    
+    int n1 = nums1.size();
+    int n2 = nums2.size();
+    
+    int i = 0; // Pointer for nums1
+    int j = 0; // Pointer for nums2
+    
+    // Move through both arrays simultaneously
+    while (i < n1 && j < n2) {
+        if (nums1[i] == nums2[j]) {
+            intersection.push_back(nums1[i]);
+            i++;
+            j++;
+        } 
+        else if (nums1[i] < nums2[j]) {
+            i++; // Move the pointer of the smaller element forward
+        } 
+        else {
+            j++; // Move the pointer of the smaller element forward
+        }
+    }
+    
+    // Print the result
+    for (auto it : intersection) {
+        cout << it << " ";
+    }
+    
+    return 0;
+}
