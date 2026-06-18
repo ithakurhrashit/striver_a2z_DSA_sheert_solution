@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+int lenOfLongSubArr(const std::vector<int>& arr, int k) {
+    // Hash map to store (prefix_sum, index)
+    std::unordered_map<int, int> preSumMap;
+    int sum = 0;
+    int maxLen = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        // Add current element to prefix sum
+        sum += arr[i];
+
+        // Case 1: If the sum itself is equal to k
+        if (sum == k) {
+            maxLen = std::max(maxLen, i + 1);
+        }
+
+        // Case 2: If (sum - k) exists in the map, a subarray with sum k is found
+        int rem = sum - k;
+        if (preSumMap.find(rem) != preSumMap.end()) {
+            int len = i - preSumMap[rem];
+            maxLen = std::max(maxLen, len);
+        }
+
+        // Case 3: Only add the sum to the map if it doesn't already exist.
+        // This ensures we keep the earliest index for a maximum subarray length.
+        if (preSumMap.find(sum) == preSumMap.end()) {
+            preSumMap[sum] = i;
+        }
+    }
+
+    return maxLen;
+}
+
+int main() {
+    std::vector<int> arr = {10, 5, 2, 7, 1, 9};
+    int k = 15;
+    
+    int length = lenOfLongSubArr(arr, k);
+    std::cout << "Length of the longest subarray with sum " << k << " is: " << length << std::endl;
+
+    return 0;
+}
