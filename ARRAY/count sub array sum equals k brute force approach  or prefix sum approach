@@ -1,0 +1,14 @@
+int presum=0;
+int count =0;
+map<int,int> mpp;
+// this map will store the prefix sum and their count
+mpp[0]=1;
+for(int i=0;i<nums.size();i++){
+    presum+=nums[i];
+    int remove = presum -k;
+    count+=mpp[remove];
+     mpp[presum]+=1;
+}
+return count ;
+ // evertime we check the presum all the subarrays containning that presum stored in the map will avail themselves and count can be done in the most optimal time and space complextiy i.e O(N)
+// revise this evertime you want to check about presum 
